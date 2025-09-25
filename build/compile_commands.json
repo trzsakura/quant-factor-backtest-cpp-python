@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/quant_factor_backtest/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE -Dfactor_core_EXPORTS @CMakeFiles/factor_core.dir/includes_CXX.rsp -g -std=c++17 -fvisibility=hidden -o CMakeFiles\\factor_core.dir\\src\\compute_factors.cpp.obj -c D:\\quant_factor_backtest\\cpp_core\\src\\compute_factors.cpp",
+  "file": "D:/quant_factor_backtest/cpp_core/src/compute_factors.cpp",
+  "output": "CMakeFiles/factor_core.dir/src/compute_factors.cpp.obj"
+}
+]

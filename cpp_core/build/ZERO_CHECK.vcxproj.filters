@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\quant_factor_backtest\cpp_core\build\CMakeFiles\d5e828435086bc7dd58c821489bb6b92\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2B2A2B10-9E03-3711-AAB3-22D45446E1DC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"D:/quant_factor_backtest/cpp_core/build/cmake_install.cmake",
+		"D:/quant_factor_backtest/cpp_core/build/_deps/pybind11-build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

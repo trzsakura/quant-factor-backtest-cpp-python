@@ -1,0 +1,10 @@
+^D:\QUANT_FACTOR_BACKTEST\CPP_CORE\BUILD\CMAKEFILES\D5E828435086BC7DD58C821489BB6B92\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/quant_factor_backtest/cpp_core -BD:/quant_factor_backtest/cpp_core/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/quant_factor_backtest/cpp_core/build/factor_core.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
