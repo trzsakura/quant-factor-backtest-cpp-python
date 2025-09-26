@@ -1,2 +1,5 @@
 # 忽略 .vscode 目录
 .vscode/
+
+# Python 缓存
+__pycache__/
