@@ -45,7 +45,9 @@ def load_all_stocks(codes, start_date="20200101", end_date="20230101"):
         df = load_stock_data(code, start_date, end_date)
         if df is not None:
             df['trade_date'] = pd.to_datetime(df['trade_date'])
+            df["date"] = df['trade_date']
             df.set_index('trade_date', inplace=True)
+            df = df.sort_index()
             data_dict[code] = df
     return data_dict
 

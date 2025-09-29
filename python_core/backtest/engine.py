@@ -2,9 +2,9 @@
 import pandas as pd
 import numpy as np
 
-def run_backtest(selected_df, data_dict, initial_capital=100000):
+def run_backtest(selected_df, data_dict, config, initial_capital=100000):
     """
-    简单回测：等权买入 top 2，持有5天，换仓
+    简单回测：等权买入 top 3，持有5天，换仓
     """
     capital = initial_capital
     position = {}  # 当前持仓 {code: shares}
@@ -23,6 +23,7 @@ def run_backtest(selected_df, data_dict, initial_capital=100000):
     
     for i, current_date in enumerate(all_dates):
         if current_date not in selected_dict:
+            print("current_date not in dict", current_date)
             continue
 
         # 每5天调仓
@@ -32,7 +33,8 @@ def run_backtest(selected_df, data_dict, initial_capital=100000):
         # 卖出所有持仓（简化：按当日收盘价卖出）
         for code, shares in position.items():
             price = data_dict[code].loc[current_date, 'close']
-            capital += shares * price
+            sell_price = price * (1 - config['backtest']['slippage'])
+            capital += shares * sell_price
         position = {}
 
         # 买入新股票（等权）
@@ -45,10 +47,14 @@ def run_backtest(selected_df, data_dict, initial_capital=100000):
             try:
                 # price = data_dict[code].set_index('trade_date').loc[current_date, 'close']
                 price = data_dict[code].loc[current_date, 'close']
-                shares = int(per_stock_capital / price)
+                buy_price = price * (1 + config['backtest']['slippage'])
+                buy_cost = buy_price * (1 + config['backtest']['commission'])
+                shares = int(per_stock_capital / buy_cost)
+                # 手续费
+                cost = shares * buy_price * config['backtest']['commission']
+
                 position[code] = shares
-                # print("code:", code, ", shares:", shares)
-                capital -= shares * price
+                capital -= (shares * buy_price + cost)
             except KeyError:
                 continue  # 股票停牌等
 
@@ -56,7 +62,7 @@ def run_backtest(selected_df, data_dict, initial_capital=100000):
         portfolio_value = capital
         for code, shares in position.items():
             price = data_dict[code].loc[current_date, 'close']
-            portfolio_value += shares * price
+            portfolio_value += shares * price * (1 + config['backtest']['slippage'])
         print("portfolio_value:", portfolio_value)
 
         equity_curve.append({

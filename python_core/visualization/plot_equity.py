@@ -17,7 +17,7 @@ def plot_equity(equity_df):
     equity_df = equity_df.sort_values('date')
     
     plt.figure(figsize=(12, 6))
-    plt.plot(equity_df['date'], equity_df['value'] / equity_df['value'].iloc[0], label='组合净值')
+    plt.plot(equity_df['date'], equity_df['value'], label='净资产')
     plt.title("多因子选股回测净值曲线")
     plt.xlabel("日期")
     plt.ylabel("净值")
